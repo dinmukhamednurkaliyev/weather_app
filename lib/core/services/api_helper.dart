@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:env/env.dart';
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:weather_app/core/core.dart';
-import 'package:weather_app/core/services/geolocator.dart';
 
 @immutable
 class ApiHelper {
@@ -28,7 +27,7 @@ class ApiHelper {
     return Weather.fromJson(respoonse);
   }
 
-  static Future<HourlyWeather> getHourlyWeather() async {
+  static Future<HourlyWeather> getHourlyForecast() async {
     await fetchLocation();
     final url = _constructForecastUrl();
     final response = await _fetchData(url);

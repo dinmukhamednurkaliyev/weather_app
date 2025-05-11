@@ -33,3 +33,7 @@ flutter_gen:
     flutter_svg: true
   line_length: 80
   output: lib/src/generated/
+  # colors: 
+  #   enabled: true
+  #   inputs:
+  #     - assets/colors/colors.xm
