@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:env/env.dart';
 import 'package:flutter/foundation.dart' show immutable;
+import 'package:weather_app/core/core.dart';
 import 'package:weather_app/core/services/geolocator.dart';
 
 @immutable
@@ -19,6 +21,57 @@ class ApiHelper {
     lon = location.longitude;
   }
 
-  // TODO: Create Key Storage
-  //static String _constructWeatherUrl() => '$baseUrl/weather?lat=$lat&lon=$lon&units=metric&appid=${}';
+  static Future<Weather> getCurrentWeather() async {
+    await fetchLocation();
+    final url = _constructWeatherUrl();
+    final respoonse = await _fetchData(url);
+    return Weather.fromJson(respoonse);
+  }
+
+  static Future<HourlyWeather> getHourlyWeather() async {
+    await fetchLocation();
+    final url = _constructForecastUrl();
+    final response = await _fetchData(url);
+    return HourlyWeather.fromJson(response);
+  }
+
+  static Future<Weather> getWeatherByCity({required String cityName}) async {
+    final url = _constructWeatherByCityUrl(cityName);
+    final response = await _fetchData(url);
+    return Weather.fromJson(response);
+  }
+
+  static Future<Weather> getWeeklyForecast() async {
+    await fetchLocation();
+    final url = _constructWeeklyForecastUrl();
+    final response = await _fetchData(url);
+    return Weather.fromJson(response);
+  }
+
+  static String _constructForecastUrl() =>
+      '$baseUrl/forecast?lat=$lat&lon=$lon&units=metric&appid=${EnvDev.apiKey}';
+
+  static String _constructWeatherByCityUrl(String cityName) =>
+      '$baseUrl/weather?q=$cityName&units=metric&appid=${EnvDev.apiKey}';
+
+  static String _constructWeatherUrl() =>
+      '$baseUrl/weather?lat=$lat&lon=$lon&units=metric&appid=${EnvDev.apiKey}';
+
+  static String _constructWeeklyForecastUrl() =>
+      '$weeklyWeatherUrl&latitude=$lat&longitude=$lon';
+
+  static Future<Map<String, dynamic>> _fetchData(String url) async {
+    try {
+      final response = await dio.get(url);
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        printWarning('Failed to load data: ${response.statusCode}');
+        throw Exception('Failed to load data');
+      }
+    } catch (exception) {
+      printWarning('Error fetching data from $url: $exception');
+      throw Exception('Error fetching data');
+    }
+  }
 }
