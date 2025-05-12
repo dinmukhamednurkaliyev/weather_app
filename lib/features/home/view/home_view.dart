@@ -41,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
     ),
   ];
 
-  final _pages = [
+  final _screens = [
     const Center(child: Text('Home Page')),
     const Center(child: Text('Search Page')),
     const Center(child: Text('Weather Page')),
@@ -52,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Screen')),
-      body: _pages[_currentPageIndex],
+      body: _screens[_currentPageIndex],
       bottomNavigationBar: NavigationBar(
         destinations: _destinations,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
