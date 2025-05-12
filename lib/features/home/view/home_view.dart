@@ -1,4 +1,6 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/features/features.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,29 +22,29 @@ class _HomeViewState extends State<HomeView> {
   int _currentPageIndex = 0;
   final _destinations = const [
     NavigationDestination(
-      icon: Icon(Icons.home_outlined),
-      selectedIcon: Icon(Icons.home),
+      icon: Icon(Icons.home_outlined, color: Colors.white),
+      selectedIcon: Icon(Icons.home, color: Colors.white),
       label: 'Home',
     ),
     NavigationDestination(
-      icon: Icon(Icons.search_outlined),
-      selectedIcon: Icon(Icons.search),
+      icon: Icon(Icons.search_outlined, color: Colors.white),
+      selectedIcon: Icon(Icons.search, color: Colors.white),
       label: 'Search',
     ),
     NavigationDestination(
-      icon: Icon(Icons.wb_sunny_outlined),
-      selectedIcon: Icon(Icons.wb_sunny),
+      icon: Icon(Icons.wb_sunny_outlined, color: Colors.white),
+      selectedIcon: Icon(Icons.wb_sunny, color: Colors.white),
       label: 'Weather',
     ),
     NavigationDestination(
-      icon: Icon(Icons.settings_outlined),
-      selectedIcon: Icon(Icons.settings),
+      icon: Icon(Icons.settings_outlined, color: Colors.white),
+      selectedIcon: Icon(Icons.settings, color: Colors.white),
       label: 'Settings',
     ),
   ];
 
   final _screens = [
-    const Center(child: Text('Home Page')),
+    const WeatherPage(),
     const Center(child: Text('Search Page')),
     const Center(child: Text('Weather Page')),
     const Center(child: Text('Settings Page')),
@@ -51,18 +53,22 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home Screen')),
       body: _screens[_currentPageIndex],
-      bottomNavigationBar: NavigationBar(
-        destinations: _destinations,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        selectedIndex: _currentPageIndex,
-        indicatorColor: Colors.transparent,
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentPageIndex = index;
-          });
-        },
+      bottomNavigationBar: NavigationBarTheme(
+        data: const NavigationBarThemeData(
+          backgroundColor: AppColors.secondaryBlack,
+        ),
+        child: NavigationBar(
+          destinations: _destinations,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          selectedIndex: _currentPageIndex,
+          indicatorColor: Colors.transparent,
+          onDestinationSelected: (index) {
+            setState(() {
+              _currentPageIndex = index;
+            });
+          },
+        ),
       ),
     );
   }
