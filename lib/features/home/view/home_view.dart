@@ -9,36 +9,61 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomeView extends StatelessWidget {
-  final _destinations = [
-    const NavigationDestination(
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int _currentPageIndex = 0;
+  final _destinations = const [
+    NavigationDestination(
       icon: Icon(Icons.home_outlined),
       selectedIcon: Icon(Icons.home),
       label: 'Home',
     ),
-    const NavigationDestination(
+    NavigationDestination(
       icon: Icon(Icons.search_outlined),
       selectedIcon: Icon(Icons.search),
-      label: 'Home',
+      label: 'Search',
     ),
-    const NavigationDestination(
+    NavigationDestination(
       icon: Icon(Icons.wb_sunny_outlined),
       selectedIcon: Icon(Icons.wb_sunny),
-      label: 'Home',
+      label: 'Weather',
     ),
-    const NavigationDestination(
+    NavigationDestination(
       icon: Icon(Icons.settings_outlined),
       selectedIcon: Icon(Icons.settings),
-      label: 'Home',
+      label: 'Settings',
     ),
   ];
-  HomeView({super.key});
+
+  final _pages = [
+    const Center(child: Text('Home Page')),
+    const Center(child: Text('Search Page')),
+    const Center(child: Text('Weather Page')),
+    const Center(child: Text('Settings Page')),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Screen')),
-      bottomNavigationBar: NavigationBar(destinations: _destinations),
+      body: _pages[_currentPageIndex],
+      bottomNavigationBar: NavigationBar(
+        destinations: _destinations,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        selectedIndex: _currentPageIndex,
+        indicatorColor: Colors.transparent,
+        onDestinationSelected: (index) {
+          setState(() {
+            _currentPageIndex = index;
+          });
+        },
+      ),
     );
   }
 }
