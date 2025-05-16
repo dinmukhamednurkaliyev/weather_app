@@ -1,73 +1,71 @@
 import 'package:app_ui/app_ui.dart';
 
-String getWeatherIcon({required int weatherCode}) {
-  var weatherCondition = '01d';
-
+AssetGenImage getWeatherIcon({required int weatherCode}) {
   if (weatherCode == 801) {
-    weatherCondition = Assets.icons.a02d as String;
+    return Assets.icons.a02d;
   } else if (weatherCode == 802) {
-    weatherCondition = Assets.icons.a03d as String;
+    return Assets.icons.a03d;
   } else if (weatherCode == 803) {
-    weatherCondition = Assets.icons.a04d as String;
+    return Assets.icons.a04d;
   } else if (weatherCode == 804) {
-    weatherCondition = Assets.icons.a04d as String;
+    return Assets.icons.a04d;
   } else if (weatherCode == 800) {
-    weatherCondition = Assets.icons.a01d as String;
+    return Assets.icons.a01d;
   } else if (weatherCode > 700) {
-    weatherCondition = Assets.icons.a50d as String;
+    return Assets.icons.a50d;
   } else if (weatherCode >= 600) {
-    weatherCondition = Assets.icons.a50d as String;
+    return Assets.icons.a50d;
   } else if (weatherCode >= 500) {
-    weatherCondition = Assets.icons.a13d as String;
+    return Assets.icons.a13d;
   } else if (weatherCode >= 300) {
-    weatherCondition = Assets.icons.a10d as String;
+    return Assets.icons.a10d;
   } else if (weatherCode >= 200) {
-    weatherCondition = Assets.icons.a11d as String;
+    return Assets.icons.a11d;
   }
 
-  return weatherCondition;
+  return Assets.icons.a01d;
 }
 
 //! Mpas weather codes (from opne-meteo) to image urls
-String getWeatherIcon2(int id) {
+AssetGenImage getWeatherIcon2(int id) {
   if (id == 0) {
-    return Assets.icons.a01d as String;
+    return Assets.icons.a01d;
   }
   if (id == 1) {
-    return Assets.icons.a6 as String;
+    return Assets.icons.a6;
   }
   if (id == 2) {
-    return Assets.icons.a03d as String;
+    return Assets.icons.a03d;
   }
   if (id == 3) {
-    return Assets.icons.a04d as String;
+    return Assets.icons.a04d;
   }
   if (id == 45) {
-    return Assets.icons.a04d as String;
+    return Assets.icons.a04d;
   }
   if (id == 48) {
-    return Assets.icons.a04d as String;
+    return Assets.icons.a04d;
   }
   if (id == 53) {
-    return Assets.icons.a39 as String;
+    return Assets.icons.a39;
   }
   if (id > 50 && id < 60) {
-    return Assets.icons.a09d as String;
+    return Assets.icons.a09d;
   }
   if (id > 60 && id < 70) {
-    return Assets.icons.a7 as String;
+    return Assets.icons.a7;
   }
   if (id >= 70 && id < 80) {
-    return Assets.icons.a04d as String;
+    return Assets.icons.a04d;
   }
   if (id >= 80 && id < 85) {
-    return Assets.icons.a7 as String;
+    return Assets.icons.a7;
   }
   if (id > 85) {
-    return Assets.icons.a13d as String;
+    return Assets.icons.a13d;
   }
 
-  return Assets.icons.a01d as String;
+  return Assets.icons.a01d;
 }
 
 /*

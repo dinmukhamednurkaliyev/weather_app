@@ -60,10 +60,21 @@ class WeatherView extends ConsumerWidget {
                 ),
                 const SizedBox(height: 40),
                 Text(weather.weather[0].description, style: AppTextStyles.h2),
-                const SizedBox(height: 40),
-                WeatherInfo(weather: weather),
               ],
             ),
+
+            const SizedBox(height: 40),
+            WeatherInfo(weather: weather),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Today', style: AppTextStyles.h2),
+                TextButton(onPressed: () {}, child: const Text('View all')),
+              ],
+            ),
+            const SizedBox(height: 15),
+            HourlyForecastWeather(),
           ],
         );
       },
