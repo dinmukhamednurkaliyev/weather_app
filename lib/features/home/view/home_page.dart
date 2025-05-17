@@ -1,6 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/features/features.dart';
+import 'package:weather_app/features/search/view/search_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -43,9 +44,9 @@ class _HomeViewState extends State<HomeView> {
     ),
   ];
 
-  final _screens = [
+  final _pages = [
     const WeatherPage(),
-    const Center(child: Text('Search Page')),
+    const SearchPage(),
     const Center(child: Text('Weather Page')),
     const Center(child: Text('Settings Page')),
   ];
@@ -53,7 +54,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentPageIndex],
+      body: _pages[_currentPageIndex],
       bottomNavigationBar: NavigationBarTheme(
         data: const NavigationBarThemeData(
           backgroundColor: AppColors.secondaryBlack,
