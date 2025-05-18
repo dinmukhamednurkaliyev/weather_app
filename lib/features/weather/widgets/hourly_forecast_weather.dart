@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/core/core.dart';
-import 'package:weather_app/core/provider/get_hourly_weather_provider.dart';
 
 class HourlyForecastWeather extends ConsumerWidget {
   const HourlyForecastWeather({super.key});
@@ -20,7 +19,7 @@ class HourlyForecastWeather extends ConsumerWidget {
             itemBuilder: (context, index) {
               final weather = hourlyWeather.list[index];
 
-              return HourlyForcastTile(
+              return HourlyForecastTile(
                 id: weather.weather[0].id,
                 hour: weather.dt.time,
                 temp: weather.main.temp.round(),

@@ -20,18 +20,26 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       body: GradientContainer(
         children: [
-          Text('Pick Location', style: AppTextStyles.h1),
-          const SizedBox(height: 30),
-          Text(
-            'Find the area or city that you want to know the detailed weather info at this time',
-            style: AppTextStyles.subtitleText,
+          const Column(
+            children: [
+              Text('Pick Location', style: AppTextStyles.h1),
+              SizedBox(height: 30),
+              Text(
+                'Find the area or city that you want to know the detailed weather info at this time',
+                style: AppTextStyles.subtitleText,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
           const SizedBox(height: 40),
           Row(
             children: [
               Expanded(child: SearchTextField(controller: searchController)),
+              const SizedBox(width: 15),
+              const LocationIcon(),
             ],
           ),
+          FamousCities(),
         ],
       ),
     );

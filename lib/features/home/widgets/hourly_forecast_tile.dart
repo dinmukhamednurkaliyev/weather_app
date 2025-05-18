@@ -2,15 +2,14 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/core/core.dart';
-import 'package:weather_app/core/provider/get_hourly_weather_provider.dart';
 
-class HourlyForcastTile extends StatelessWidget {
+class HourlyForecastTile extends StatelessWidget {
   final int id;
 
   final String hour;
   final int temp;
   final bool isActive;
-  const HourlyForcastTile({
+  const HourlyForecastTile({
     super.key,
     required this.id,
     required this.hour,
@@ -68,7 +67,7 @@ class HourlyForecastView extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               final weather = hourlyForecast.list[index];
-              return HourlyForcastTile(
+              return HourlyForecastTile(
                 id: weather.weather[0].id,
                 hour: weather.dt.time,
                 temp: weather.main.temp.round(),
