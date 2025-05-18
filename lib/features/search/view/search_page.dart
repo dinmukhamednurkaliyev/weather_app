@@ -39,6 +39,7 @@ class SearchView extends StatelessWidget {
               const LocationIcon(),
             ],
           ),
+          const SizedBox(height: 30),
           FamousCities(),
         ],
       ),
