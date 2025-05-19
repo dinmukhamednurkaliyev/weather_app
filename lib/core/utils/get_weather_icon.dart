@@ -1,5 +1,20 @@
 import 'package:app_ui/app_ui.dart';
 
+final Map<String, AssetGenImage> weatherIcons = {
+  '01d': Assets.icons.a01d,
+  '02d': Assets.icons.a02d,
+  '03d': Assets.icons.a03d,
+  '04d': Assets.icons.a04d,
+  '09d': Assets.icons.a09d,
+  '10d': Assets.icons.a10d,
+  '11d': Assets.icons.a11d,
+  '13d': Assets.icons.a13d,
+  '50d': Assets.icons.a50d,
+  '39': Assets.icons.a39,
+  '6': Assets.icons.a6,
+  '7': Assets.icons.a7,
+};
+
 AssetGenImage getWeatherIcon({required int weatherCode}) {
   if (weatherCode == 801) {
     return Assets.icons.a02d;

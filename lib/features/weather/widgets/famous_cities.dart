@@ -14,7 +14,16 @@ class FamousCities extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final city = famousCities[index];
-        return FamousCityTile(index: index, city: city);
+        return InkWell(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => WeatherDetailPage(cityName: city.name),
+              ),
+            );
+          },
+          child: FamousCityTile(index: index, city: city),
+        );
       },
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

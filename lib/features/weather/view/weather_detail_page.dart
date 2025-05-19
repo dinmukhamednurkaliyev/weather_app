@@ -5,21 +5,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/core.dart';
 import '../../features.dart';
 
-class WeatherPage extends StatelessWidget {
-  const WeatherPage({super.key});
+class WeatherDetailPage extends StatelessWidget {
+  final String cityName;
+  const WeatherDetailPage({super.key, required this.cityName});
 
   @override
   Widget build(BuildContext context) {
-    return WeatherView();
+    return WeatherDetailView(cityName: cityName);
   }
 }
 
-class WeatherView extends ConsumerWidget {
-  const WeatherView({super.key});
+class WeatherDetailView extends ConsumerWidget {
+  final String cityName;
+  const WeatherDetailView({required this.cityName, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weatherData = ref.watch(currentWeatherProvider);
+    final weatherData = ref.watch(weatherByCityNameProvider(cityName));
     return weatherData.when(
       data: (weather) {
         final String iconName = weather.weather[0].icon.replaceAll('n', 'd');
@@ -28,6 +30,7 @@ class WeatherView extends ConsumerWidget {
         return GradientContainer(
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(width: double.infinity),
                 Text(weather.name, style: AppTextStyles.h1),
@@ -36,7 +39,7 @@ class WeatherView extends ConsumerWidget {
                   DateTime.now().dateTime,
                   style: AppTextStyles.subtitleText,
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
 
                 SizedBox(
                   height: 260,
@@ -45,7 +48,7 @@ class WeatherView extends ConsumerWidget {
                           ? weatherIconAsset.image(width: 260, height: 260)
                           : Text('Icon not found for $iconName'),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 50),
                 Text(
                   weather.weather[0].description.capitalize,
                   style: AppTextStyles.h2,
@@ -55,16 +58,7 @@ class WeatherView extends ConsumerWidget {
 
             const SizedBox(height: 40),
             WeatherInfo(weather: weather),
-            const SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Today', style: AppTextStyles.h2),
-                TextButton(onPressed: () {}, child: const Text('View all')),
-              ],
-            ),
             const SizedBox(height: 15),
-            HourlyForecastWeather(),
           ],
         );
       },
