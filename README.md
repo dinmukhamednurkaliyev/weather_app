@@ -7,6 +7,7 @@ This project is a straightforward weather application developed using Flutter. I
 <p float="left">
 <img src="docs/screenshot/home_page.png" width="200"/>
 <img src="docs/screenshot/search_page.png" width="200"/>
+<img src="docs/screenshot/weather_detail_page.png" width="200"/>
 </p>
 
 ## Resources

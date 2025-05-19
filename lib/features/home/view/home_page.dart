@@ -46,7 +46,7 @@ class _HomeViewState extends State<HomeView> {
   final _pages = [
     const WeatherPage(),
     const SearchPage(),
-    const Center(child: Text('Weather Page')),
+    const ForecastPage(),
     const Center(child: Text('Settings Page')),
   ];
 
