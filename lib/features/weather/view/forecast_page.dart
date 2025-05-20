@@ -2,6 +2,8 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/core.dart';
 
+import '../../features.dart';
+
 class ForecastPage extends StatelessWidget {
   const ForecastPage({super.key});
 
@@ -41,6 +43,8 @@ class ForecastView extends StatelessWidget {
               Icon(Icons.calendar_month_outlined, color: Colors.white),
             ],
           ),
+          const SizedBox(height: 20),
+          WeeklyForecast(),
         ],
       ),
     );

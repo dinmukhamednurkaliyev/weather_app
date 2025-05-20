@@ -42,7 +42,7 @@ AssetGenImage getWeatherIcon({required int weatherCode}) {
 }
 
 //! Mpas weather codes (from opne-meteo) to image urls
-AssetGenImage getWeatherIcon2(int id) {
+AssetGenImage getWeatherIcon2(int id, {required weatherCode}) {
   if (id == 0) {
     return Assets.icons.a01d;
   }

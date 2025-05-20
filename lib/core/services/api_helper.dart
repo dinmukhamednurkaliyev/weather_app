@@ -40,11 +40,11 @@ class ApiHelper {
     return Weather.fromJson(response);
   }
 
-  static Future<Weather> getWeeklyForecast() async {
+  static Future<WeeklyWeather> getWeeklyForecast() async {
     await fetchLocation();
     final url = _constructWeeklyForecastUrl();
     final response = await _fetchData(url);
-    return Weather.fromJson(response);
+    return WeeklyWeather.fromJson(response);
   }
 
   static String _constructForecastUrl() =>

@@ -1,46 +1,46 @@
 class Current {
+  final String time;
+  final int interval;
+
   Current({required this.time, required this.interval});
+
   factory Current.fromJson(Map<String, dynamic> json) =>
       Current(time: json['time'], interval: json['interval']);
-
-  final String time;
-
-  final int interval;
 
   Map<String, dynamic> toJson() => {'time': time, 'interval': interval};
 }
 
 class CurrentUnits {
+  final String time;
+  final String interval;
+
   CurrentUnits({required this.time, required this.interval});
+
   factory CurrentUnits.fromJson(Map<String, dynamic> json) =>
       CurrentUnits(time: json['time'], interval: json['interval']);
-
-  final String time;
-
-  final String interval;
 
   Map<String, dynamic> toJson() => {'time': time, 'interval': interval};
 }
 
 class Daily {
+  final List<dynamic> time;
+  final List<dynamic> weatherCode;
+  final List<dynamic> temperature2mMax;
+  final List<dynamic> temperature2mMin;
+
   Daily({
     required this.time,
     required this.weatherCode,
     required this.temperature2mMax,
     required this.temperature2mMin,
   });
+
   factory Daily.fromJson(Map<String, dynamic> json) => Daily(
     time: json['time'],
     weatherCode: json['weather_code'],
     temperature2mMax: json['temperature_2m_max'],
     temperature2mMin: json['temperature_2m_min'],
   );
-  final List<dynamic> time;
-  final List<dynamic> weatherCode;
-
-  final List<dynamic> temperature2mMax;
-
-  final List<dynamic> temperature2mMin;
 
   Map<String, dynamic> toJson() => {
     'time': time,
@@ -51,24 +51,24 @@ class Daily {
 }
 
 class DailyUnits {
+  final String time;
+  final String weatherCode;
+  final String temperature2mMax;
+  final String temperature2mMin;
+
   DailyUnits({
     required this.time,
     required this.weatherCode,
     required this.temperature2mMax,
     required this.temperature2mMin,
   });
+
   factory DailyUnits.fromJson(Map<String, dynamic> json) => DailyUnits(
     time: json['time'],
     weatherCode: json['weather_code'],
     temperature2mMax: json['temperature_2m_max'],
     temperature2mMin: json['temperature_2m_min'],
   );
-  final String time;
-  final String weatherCode;
-
-  final String temperature2mMax;
-
-  final String temperature2mMin;
 
   Map<String, dynamic> toJson() => {
     'time': time,
@@ -79,6 +79,18 @@ class DailyUnits {
 }
 
 class WeeklyWeather {
+  final double latitude;
+  final double longitude;
+  final double generationtimeMs;
+  final int utcOffsetSeconds;
+  final String timezone;
+  final String timezoneAbbreviation;
+  final double elevation;
+  final dynamic currentUnits;
+  final dynamic current;
+  final dynamic dailyUnits;
+  final Daily daily;
+
   WeeklyWeather({
     required this.latitude,
     required this.longitude,
@@ -92,6 +104,7 @@ class WeeklyWeather {
     required this.dailyUnits,
     required this.daily,
   });
+
   factory WeeklyWeather.fromJson(Map<String, dynamic> json) => WeeklyWeather(
     latitude: json['latitude'] ?? 0.0,
     longitude: json['longitude'] ?? 0.0,
@@ -105,19 +118,6 @@ class WeeklyWeather {
     dailyUnits: DailyUnits.fromJson(json['daily_units']),
     daily: Daily.fromJson(json['daily']),
   );
-  final double latitude;
-  final double longitude;
-  final double generationtimeMs;
-  final int utcOffsetSeconds;
-  final String timezone;
-  final String timezoneAbbreviation;
-  final double elevation;
-  final dynamic currentUnits;
-  final dynamic current;
-
-  final dynamic dailyUnits;
-
-  final Daily daily;
 
   Map<String, dynamic> toJson() => {
     'latitude': latitude,
